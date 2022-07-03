@@ -4,14 +4,14 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="embeddings-validation",
+    name="ptls-validation",
     version="0.0.3",
     author="",
     author_email="",
     description="Estimate your feature vector quality on downstream task",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/sberbank-ai-lab/embeddings-valid",
+    url="https://github.com/dllllb/plts-valid",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
