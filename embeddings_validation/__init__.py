@@ -1,1 +1,2 @@
 from embeddings_validation.tasks.report_collect import ReportCollect
+from embeddings_validation.external_tools import get_fold_list, get_fold_ids
