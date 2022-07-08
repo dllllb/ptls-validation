@@ -28,7 +28,7 @@ def get_fold_ids(
     current_part = current_fold[kind]
     id_file_path = current_part["path"]
     df_targets = TargetFile.load(id_file_path)
-    print(f'====Loaded {kind} for fold_id={fold_id}')
+    # print(f'====Loaded {kind} for fold_id={fold_id}')
     return df_targets.ids_values
 
 
