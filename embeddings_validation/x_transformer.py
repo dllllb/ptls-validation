@@ -2,12 +2,12 @@ import datetime
 import logging
 import re
 
+import hydra
 import pandas as pd
+from omegaconf import ListConfig
 
-from embeddings_validation import cls_loader
 from embeddings_validation.file_reader import FeatureFile
 from embeddings_validation.preprocessing.category_encoder import CategoryEncoder
-
 
 logger = logging.getLogger('luigi-interface')
 
@@ -60,15 +60,15 @@ class XTransformer:
 
     def load_preprocessors(self, preprocessing):
         self.preprocessing = []
-        for t_name, params in preprocessing:
-            p = cls_loader.create(t_name, params)
+        for t_params in preprocessing:
+            p = hydra.utils.instantiate(t_params)
             self.preprocessing.append(p)
 
     def load_features(self):
         _start = datetime.datetime.now()
         current_features = self.conf.features[self.feature_name]
         read_params = current_features['read_params']
-        if type(read_params) is not list:
+        if type(read_params) not in (list, ListConfig):
             read_params = [read_params]
 
         self.feature_list = [FeatureFile.read_table(self.conf, **f) for f in read_params]

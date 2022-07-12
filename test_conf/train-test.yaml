@@ -57,27 +57,27 @@ features:
         file_name: ${hydra:runtime.cwd}/test_data/features_1.csv
     target_options: {}
 external_scores: 
-  0: nn_target.json
-  1: nn_finetuning.json
+  "0": nn_target.json
+  "1": nn_finetuning.json
 models: 
   linear: 
     enabled: true
-    cls_name: sklearn.linear_model.LogisticRegression
-    params: 
+    model:
+      _target_: sklearn.linear_model.LogisticRegression
       C: 0.1
     cpu_count: 1
     preprocessing: []
   linear2: 
     enabled: true
-    cls_name: sklearn.linear_model.LogisticRegression
-    params: 
+    model:
+      _target_: sklearn.linear_model.LogisticRegression
       C: 1.0
     cpu_count: 1
     preprocessing: []
   lgbm: 
     enabled: true
-    cls_name: lightgbm.LGBMClassifier
-    params: 
+    model:
+      _target_: lightgbm.LGBMClassifier
       n_jobs: 6
     cpu_count: 6
     preprocessing: []

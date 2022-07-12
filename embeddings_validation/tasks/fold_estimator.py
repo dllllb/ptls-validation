@@ -4,12 +4,11 @@ import logging
 import math
 import os
 
+import hydra
 import luigi
 
-from embeddings_validation.config import Config
 from embeddings_validation.file_reader import TargetFile
 from embeddings_validation.metrics import Metrics
-from embeddings_validation import cls_loader
 from embeddings_validation.tasks.fold_splitter import FoldSplitter
 from embeddings_validation.x_transformer import XTransformer
 
@@ -42,7 +41,7 @@ class FoldEstimator(luigi.Task):
     def run(self):
         x_transf = XTransformer(self.conf, self.feature_name, self.conf.models[self.model_name]['preprocessing'])
         conf_model = self.conf.models[self.model_name]
-        model = cls_loader.create(conf_model['cls_name'], conf_model['params'])
+        model = hydra.utils.instantiate(conf_model['model'])
         scorer = Metrics(self.conf)
         on_error = self.conf.error_handling
 

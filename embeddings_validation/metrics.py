@@ -1,9 +1,7 @@
 import datetime
 
-from sklearn.metrics import roc_auc_score, accuracy_score
+import hydra
 from sklearn.metrics import make_scorer
-
-from embeddings_validation import cls_loader
 
 
 class Metrics:
@@ -13,8 +11,7 @@ class Metrics:
         self.metric_list = {k: self.get_scorer(**v) for k, v in conf.metrics.items()}
 
     def get_scorer(self, score_func, scorer_params):
-        score_f = cls_loader.get_cls(score_func)
-
+        score_f = hydra.utils.get_method(score_func)
         return make_scorer(score_f, **scorer_params)
 
     def score(self, model, X, y):

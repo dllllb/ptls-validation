@@ -41,39 +41,31 @@ external_scores: {}
 models: 
   linear: 
     enabled: true
-    cls_name: sklearn.linear_model.LogisticRegression
-    params: 
+    model:
+      _target_: sklearn.linear_model.LogisticRegression
       C: 0.1
     cpu_count: 1
     preprocessing: 
-      - 
-        - embeddings_validation.preprocessing.category_encoder.CategoryEncoder
-        - {}
-      - 
-        - sklearn.impute.SimpleImputer
-        - 
-          strategy: median
+      - _target_: embeddings_validation.preprocessing.category_encoder.CategoryEncoder
+      - _target_: sklearn.impute.SimpleImputer
+        strategy: median
   lgbm: 
     enabled: true
-    cls_name: lightgbm.LGBMClassifier
-    params: 
+    model:
+      _target_: lightgbm.LGBMClassifier
       n_jobs: 6
     cpu_count: 6
     preprocessing: 
-      - 
-        - embeddings_validation.preprocessing.category_encoder.CategoryEncoder
-        - {}
-  xgb: 
+      - _target_: embeddings_validation.preprocessing.category_encoder.CategoryEncoder
+  xgb:
     enabled: true
-    cls_name: xgboost.XGBClassifier
-    params: 
+    model:
+      _target_: xgboost.XGBClassifier
       n_jobs: 4
     cpu_count: 4
-    preprocessing: 
-      - 
-        - embeddings_validation.preprocessing.category_encoder.CategoryEncoder
-        - {}
-metrics: 
+    preprocessing:
+      - _target_: embeddings_validation.preprocessing.category_encoder.CategoryEncoder
+metrics:
   auroc: 
     enabled: true
     score_func: sklearn.metrics.roc_auc_score
