@@ -10,7 +10,7 @@ from embeddings_validation.config import Config
 from embeddings_validation.tasks.fold_splitter import FoldSplitter
 
 
-@hydra.main()
+@hydra.main(version_base=None)
 def main(conf: DictConfig):
     OmegaConf.set_struct(conf, False)
     orig_cwd = hydra.utils.get_original_cwd()
