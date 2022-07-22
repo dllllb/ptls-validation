@@ -6,7 +6,7 @@ import pandas as pd
 
 ID_TYPE_MAPPING = {
     'str': str,
-    'int': np.int32,
+    'int': np.int64,
     'date': 'datetime64[D]',
     'datetime': 'datetime64[s]',
 }
