@@ -1,7 +1,6 @@
 import os
 
 import luigi
-import datetime
 import hydra
 
 from omegaconf import DictConfig, OmegaConf
@@ -12,32 +11,25 @@ from embeddings_validation.tasks.fold_splitter import FoldSplitter
 
 @hydra.main(version_base=None)
 def main(conf: DictConfig):
-    OmegaConf.set_struct(conf, False)
-    orig_cwd = hydra.utils.get_original_cwd()
-
     conf.workers = conf.get('workers')
     if conf.workers is None: raise AttributeError('Define the number of workers: +workers=4')
     conf.total_cpu_count = conf.get('total_cpu_count')
     if conf.total_cpu_count is None: raise AttributeError('Define the number of cpu on your machine: +total_cpu_count=8')
 
-    conf.split_only = conf.get('split_only', False)
-    conf.local_scheduler = conf.get('local_sheduler', True)
-    conf.log_level = conf.get('log_level', 'INFO')
+    config = Config.get_conf(conf, os.path.abspath(conf.conf_path))
 
-    conf = Config.get_conf(conf, orig_cwd + '/' + conf.conf_path)
-
-    if conf['split_only']:
+    if conf.get('split_only', False):
         task = FoldSplitter(
-            conf=conf,
+            conf=config,
         )
     else:
         task = ReportCollect(
-            conf=conf,
+            conf=config,
             total_cpu_count=conf['total_cpu_count'],
         )
     luigi.build([task], workers=conf['workers'],
-                        local_scheduler=conf['local_scheduler'],
-                        log_level=conf['log_level'])
+                        local_scheduler=conf.get('local_scheduler', True),
+                        log_level=conf.get('log_level', 'INFO'))
 
 
 if __name__ == '__main__':

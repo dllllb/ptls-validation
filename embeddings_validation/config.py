@@ -8,6 +8,17 @@ logger = logging.getLogger(__name__)
 
 
 class Config:
+    """
+
+    Properties:
+
+    root_path:
+        absolute path to folder where config is located
+    work_dir:
+        absolute path to folder where ptls-validation store his internal files
+
+
+    """
     VALID_TRAIN_TEST = 'train-test'
     VALID_CROSS_VAL = 'crossval'
 
@@ -20,7 +31,6 @@ class Config:
 
     @classmethod
     def get_conf(cls, conf: DictConfig, abs_conf_path: str):
-        logger.info('Load config from "{0}"'.format(conf['conf_path']))
         root_path = os.path.dirname(abs_conf_path)
         return cls(conf=conf, root_path=root_path)
 
