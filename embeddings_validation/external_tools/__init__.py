@@ -18,7 +18,7 @@ def get_fold_ids(
     """Read id's from file and returns them as a list
     """
     conf= OmegaConf.load(config_path)
-    conf = Config.get_conf(conf, os.path.abspath(config_path))
+    conf = Config.get_conf(conf)
 
     fold_split_index = FoldSplitter(conf=conf).output().path
 
@@ -38,7 +38,7 @@ def get_fold_list(
     """Returns the list of fold ids
     """
     conf= OmegaConf.load(config_path)
-    conf = Config.get_conf(conf, os.path.abspath(config_path))
+    conf = Config.get_conf(conf)
     return conf.folds
 
 

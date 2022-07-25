@@ -30,8 +30,9 @@ class Config:
         self.root_path = root_path
 
     @classmethod
-    def get_conf(cls, conf: DictConfig, abs_conf_path: str):
-        root_path = os.path.dirname(abs_conf_path)
+    def get_conf(cls, conf: DictConfig, abs_conf_path: str=None):
+        # root_path = os.path.dirname(abs_conf_path)
+        root_path = './'
         return cls(conf=conf, root_path=root_path)
 
     def __getitem__(self, item):

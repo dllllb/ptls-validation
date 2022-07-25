@@ -1,7 +1,7 @@
 conf_path: test_conf/train-valid-1iter.yaml
 environment: 
-  work_dir: train-valid-1iter.work
-report_file: train-valid-1iter.txt
+  work_dir: test_conf/train-valid-1iter.work
+report_file: test_conf/train-valid-1iter.txt
 target: 
   file_name: ${hydra:runtime.cwd}/test_data/target.csv
   cols_id: 

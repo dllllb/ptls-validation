@@ -1,7 +1,7 @@
 conf_path: test_conf/single-file.yaml
 environment: 
-  work_dir: single-file.work
-report_file: single-file.txt
+  work_dir: test_conf/single-file.work
+report_file: test_conf/single-file.txt
 target: 
   file_name: ${hydra:runtime.cwd}/test_data/baseline.csv
   cols_id: 

@@ -1,7 +1,7 @@
 conf_path: test_conf/crossval.yaml
 environment: 
-  work_dir: crossval.work
-report_file: crossval.txt
+  work_dir: test_conf/crossval.work
+report_file: test_conf/crossval.txt
 target: 
   file_name: ${hydra:runtime.cwd}/test_data/target.csv
   cols_id: 
