@@ -16,7 +16,7 @@ def main(conf: DictConfig):
     conf.total_cpu_count = conf.get('total_cpu_count')
     if conf.total_cpu_count is None: raise AttributeError('Define the number of cpu on your machine: +total_cpu_count=8')
 
-    config = Config.get_conf(conf, os.path.abspath(conf.conf_path))
+    config = Config.get_conf(conf)
 
     if conf.get('split_only', False):
         task = FoldSplitter(

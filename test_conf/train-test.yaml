@@ -1,7 +1,7 @@
 conf_path: test_conf/train-test.yaml
 environment: 
-  work_dir: train-test.work
-report_file: train-test.txt
+  work_dir: test_conf/train-test.work
+report_file: test_conf/train-test.txt
 target: 
   file_name: ${hydra:runtime.cwd}/test_data/target.csv
   cols_id: 
@@ -57,8 +57,8 @@ features:
         file_name: ${hydra:runtime.cwd}/test_data/features_1.csv
     target_options: {}
 external_scores: 
-  "0": nn_target.json
-  "1": nn_finetuning.json
+  "0": test_conf/nn_target.json
+  "1": test_conf/nn_finetuning.json
 models: 
   linear: 
     enabled: true

@@ -327,7 +327,6 @@ class ReportCollect(luigi.Task):
         self.print_line()
         _text = f"""Vector testing report
 Params:
-    conf: "{self.conf['conf_path']}"
 """
         print(_text, file=self.f)
 

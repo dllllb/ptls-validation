@@ -246,7 +246,7 @@ Report preparation splits on task and execution plan prepared based on config.
 # Environment
 `embeddings_validation` module should be available for current python.
 
-Directory with config file is `root_path`. All paths described in config starts from `root_path`.
+Directory where script was run is `root_path`. All paths described in config starts from `root_path`.
 `config.work_dir` is a directory where intermediate files and reports are saved.
 `config.report_file` is a file with final report.
 
