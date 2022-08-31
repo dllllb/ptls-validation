@@ -20,6 +20,6 @@ setuptools.setup(
     ],
     python_requires='>=3.6',
     install_requires=[
-        'luigi==*',
+        'luigi>=3.0.0',
     ],
 )
